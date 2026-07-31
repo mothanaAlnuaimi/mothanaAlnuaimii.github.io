@@ -526,6 +526,20 @@ a { color: inherit; text-decoration: none; }
   border: 1px solid rgba(123, 195, 255, 0.16);
 }
 
+.btn-cv {
+  color: var(--accent-3);
+  background: rgba(8, 22, 44, 0.88);
+  border: 1px solid var(--accent-2);
+  gap: 0.5rem;
+  box-shadow: 0 0 18px rgba(74, 168, 255, 0.12);
+  transition: transform 0.18s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.btn-cv:hover {
+  background: rgba(43, 111, 255, 0.12);
+  box-shadow: 0 0 28px rgba(74, 168, 255, 0.28);
+}
+
 .section-heading { margin-bottom: 2.2rem; }
 
 .section-heading.centered {
