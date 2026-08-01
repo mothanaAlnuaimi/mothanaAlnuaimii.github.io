@@ -77,8 +77,8 @@ const sideNavObserver = new IntersectionObserver((entries) => {
     }
   });
 }, {
-  threshold: 0.35,
-  rootMargin: '0px 0px -30% 0px'
+  threshold: 0.25,
+  rootMargin: '-10% 0px -60% 0px'
 });
 
 sections.forEach((section) => sideNavObserver.observe(section));
