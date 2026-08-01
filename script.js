@@ -14,19 +14,6 @@ themeButtons.forEach((button) => {
   });
 });
 
-const menuToggle = document.getElementById('menuToggle');
-const navLinks = document.getElementById('navLinks');
-
-if (menuToggle && navLinks) {
-  menuToggle.addEventListener('click', () => {
-    navLinks.classList.toggle('open');
-  });
-
-  navLinks.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', () => navLinks.classList.remove('open'));
-  });
-}
-
 const tiltCards = document.querySelectorAll('.tilt-card');
 
 tiltCards.forEach((card) => {
@@ -72,3 +59,38 @@ const observer = new IntersectionObserver((entries) => {
 });
 
 revealItems.forEach((item) => observer.observe(item));
+
+// ===================== SIDE NAVIGATION =====================
+const sideNavItems = document.querySelectorAll('.side-nav-item');
+const sections = document.querySelectorAll('section[id]');
+
+const sideNavObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      const id = entry.target.getAttribute('id');
+      sideNavItems.forEach((item) => {
+        item.classList.remove('active');
+        if (item.getAttribute('data-section') === id) {
+          item.classList.add('active');
+        }
+      });
+    }
+  });
+}, {
+  threshold: 0.35,
+  rootMargin: '0px 0px -30% 0px'
+});
+
+sections.forEach((section) => sideNavObserver.observe(section));
+
+// smooth scroll عند الضغط
+sideNavItems.forEach((item) => {
+  item.addEventListener('click', (e) => {
+    e.preventDefault();
+    const targetId = item.getAttribute('data-section');
+    const target = document.getElementById(targetId);
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
